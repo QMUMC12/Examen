@@ -1,0 +1,44 @@
+while True:
+    print("1-Modificar membrecia")
+    print("2- Regristal horas de cardio")
+    print("3. Salir")
+    opcion = input("Elige: ")
+
+    # Opcion 1 - Membresia 
+    if opcion == "1":
+        print("\n** Modificar membresia **")
+        codigo = input("Ingrese tu codigo de membresia ")
+
+        respuesta = input("Quieres activar la membresia? (Si/No): " ).lower()
+        if respuesta == "si":
+            membresias["Vigente"] = True
+            print("Membresia desactivada")
+        else:
+            membresias["vigente"] = False
+            print("Membresía desactivada")
+
+    #Opcion 2 - Resgrital horas de cardio
+    elif opcion == "2":
+        print("\n** Regritrar horas**")
+        codigo = input("Ingrese tu codigo de membresia: ")
+
+
+        if membresias ["Vigente"] == True:
+              horas = int(input("¿Cuántos horas vas a regristarar?: "))
+
+              if (membresia["horas"] + horas) > 40:
+                  print("¡No pueds pasar de 40 horas mesuales!")
+                  print(f"Llevas: {membresias['horas']} horas")
+              else:
+                  membresia["horas"] += horas
+                  print(f"Horas resgristada : {membresias['horas']}/40")
+        else:
+            print("Error: Membresia no vigente")
+    #Opcion 3 - Salir
+    elif opcion == "3":
+                    print("Hasta luego!")
+    break
+
+else:
+        print("Opcion no válida, intenta de nuevo")
+                  
