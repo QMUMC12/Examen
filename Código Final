@@ -1,0 +1,67 @@
+# Diccionarios para almacenar datos
+membresias = {}  # Almacena estado (True/False)
+horas_mes = {}   # Almacena horas acumuladas
+
+while True:
+    # Menú principal (siempre se repite)
+    print("\n--- MENÚ PRINCIPAL ---")
+    print("1. Modificar membresía")
+    print("2. Registrar horas de cardio")
+    print("3. Salir")
+    opcion = input("Elige: ")
+
+    # Opción 1 - Membresía 
+    if opcion == "1":
+        print("\n** Modificar membresía **")
+        codigo = input("Ingrese tu código de membresía: ")
+
+        if codigo in membresias:
+            print(f"Estado actual: {'Vigente' if membresias[codigo] else 'Vencida'}")
+            cambiar = input("¿Cambiar estado? (si/no): ").lower()
+            if cambiar == "si":
+                membresias[codigo] = not membresias[codigo]
+                print("¡Estado actualizado!")
+        else:
+            print("\n¡Nueva membresía detectada!")
+            activar = input("¿Activar ahora? (si/no): ").lower()
+            estado = activar == "si"
+            membresias[codigo] = estado
+            horas_mes[codigo] = 0
+            print("¡Membresía registrada exitosamente!")
+        
+        input("\nPresiona Enter para volver al menú...")
+
+    # Opción 2 - Registrar horas
+    elif opcion == "2":
+        print("\n** Registrar horas **")
+        codigo = input("Ingrese tu código de membresía: ")
+
+        if codigo not in membresias:
+            print("Error: Membresía no existe")
+        elif not membresias[codigo]:
+            print("Error: Membresía vencida")
+        else:
+            try:
+                horas = int(input("Horas a registrar: "))
+                total = horas_mes[codigo] + horas
+                if total > 40:
+                    print("¡Superaste el límite mensual de 40 horas!")
+                    print(f"Llevas: {horas_mes[codigo]}/40 horas")
+                else:
+                    horas_mes[codigo] = total
+                    print(f"Registro exitoso! Total: {total}/40 horas")
+            except:
+                print("Error: Ingresa solo números")
+        
+        input("\nPresiona Enter para volver al menú...")
+
+    # Opción 3 - Salir
+    elif opcion == "3":
+        print("\n¡Hasta luego! ")
+        input("Presiona Enter para salir...")
+        break
+
+    # Opción no válida
+    else:
+        print("Opción incorrecta")
+        input("Presiona Enter para continuar...")
