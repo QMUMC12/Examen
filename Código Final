@@ -1,4 +1,4 @@
-# Diccionarios para almacenar datos
+
 membresias = {}  # Almacena estado (True/False)
 horas_mes = {}   # Almacena horas acumuladas
 
@@ -10,7 +10,7 @@ while True:
     print("3. Salir")
     opcion = input("Elige: ")
 
-    # Opción 1 - Membresía 
+  
     if opcion == "1":
         print("\n** Modificar membresía **")
         codigo = input("Ingrese tu código de membresía: ")
